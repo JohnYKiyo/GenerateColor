@@ -1,0 +1,29 @@
+{
+  "name": "generate-color",
+  "version": "1.0.0",
+  "description": "数学的理論に基づく色生成アルゴリズムの比較",
+  "main": "src/colorGenerators.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "color",
+    "algorithm",
+    "golden-ratio",
+    "fibonacci",
+    "color-theory",
+    "typescript"
+  ],
+  "author": "GenerateColor",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/GenerateColor.git"
+  },
+  "homepage": "https://yourusername.github.io/GenerateColor"
+}
