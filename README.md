@@ -14,6 +14,8 @@
 
 [デモページを見る](https://yourusername.github.io/GenerateColor)
 
+> **注意**: GitHub Pages の設定が必要です。リポジトリの Settings → Pages → Source で "GitHub Actions" を選択してください。
+
 ## 📚 実装されているアルゴリズム
 
 ### 1. 等間隔色相分割 (Equidistant Colors)
