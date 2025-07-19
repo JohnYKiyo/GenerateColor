@@ -12,7 +12,7 @@
 
 ### 1. 黄金比 (Golden Ratio)
 
-自然界の美しい比率である黄金比を使用して色相を決定します。Johannes Itten の色彩理論に基づき、調和の取れた色の組み合わせを生成します。
+自然界の美しい比率である黄金比を使用して色相を決定します。黄金比は約1.618の値を持ち、自然界に多く見られる調和の取れた比率です。
 
 ### 2. 等間隔分割 (Equidistant)
 
@@ -187,6 +187,6 @@ hex 形式の色文字列の配列/リスト（例: `["#ff0000", "#00ff00", "#00
 
 ## 参考文献
 
-- Johannes Itten "The Art of Color" (1961) - 黄金比の色彩応用とカラーホイール理論
-- Cynthia Brewer "Color in Information Display" (1999) - データ可視化の色選択理論
-- "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s) - 数学的パターンを色彩美学に応用した研究
+- "Introduction, Explanation & Calculation," Golden Ratio Colors.[https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/](https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/)
+- J. Chao, I. Osugi, and M. Suzuki, "On Definitions and Construction of Uniform Color Space," in Conference on Colour in Graphics, Imaging, and Vision, vol. 2, no. 1, 2004, p. 55. doi: 10.2352/CGIV.2004.2.1.art00012.
+- J. Itten, The Art of Color. [https://www.blinkist.com/en/books/the-art-of-color-en](https://www.blinkist.com/en/books/the-art-of-color-en)

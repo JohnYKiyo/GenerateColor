@@ -12,7 +12,7 @@ To see the actual implementation in action, please visit the [demo page](https:/
 
 ### 1. Golden Ratio
 
-Uses the beautiful ratio found in nature to determine hue. Based on Johannes Itten's color theory, it generates harmonious color combinations.
+Uses the beautiful ratio found in nature to determine hue. The golden ratio has a value of approximately 1.618 and is a harmonious ratio commonly found in nature.
 
 ### 2. Equidistant Division
 
@@ -187,6 +187,6 @@ This project is published under the MIT License. See the [LICENSE](LICENSE) file
 
 ## References
 
-- Johannes Itten "The Art of Color" (1961) - Golden ratio color application and color wheel theory
-- Cynthia Brewer "Color in Information Display" (1999) - Color selection theory for data visualization
-- "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s) - Research applying mathematical patterns to color aesthetics
+- "Introduction, Explanation & Calculation," Golden Ratio Colors.[https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/](https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/)
+- J. Chao, I. Osugi, and M. Suzuki, "On Definitions and Construction of Uniform Color Space," in Conference on Colour in Graphics, Imaging, and Vision, vol. 2, no. 1, 2004, p. 55. doi: 10.2352/CGIV.2004.2.1.art00012.
+- J. Itten, The Art of Color. [https://www.blinkist.com/en/books/the-art-of-color-en](https://www.blinkist.com/en/books/the-art-of-color-en)
