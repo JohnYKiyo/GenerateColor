@@ -26,9 +26,7 @@ class ColorGenerator(ABC):
     """
 
     @abstractmethod
-    def generate_colors(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         色を生成する抽象メソッド
 
@@ -92,14 +90,10 @@ class Color:
             >>> color = Color(generator)
         """
         if not isinstance(color_generator, ColorGenerator):
-            raise TypeError(
-                "color_generatorはColorGeneratorのインスタンスである必要があります"
-            )
+            raise TypeError("color_generatorはColorGeneratorのインスタンスである必要があります")
         self._color_generator = color_generator
 
-    def generate(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         設定された色生成器を使用して色を生成
 
@@ -222,9 +216,7 @@ class GoldenRatioColorGenerator(ColorGenerator):
         """黄金比の値を初期化"""
         self.golden_ratio = 0.618033988749895
 
-    def generate_colors(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         黄金比を使用して色相を決定するアルゴリズム
 
@@ -290,9 +282,7 @@ class EquidistantColorGenerator(ColorGenerator):
         ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
     """
 
-    def generate_colors(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         等間隔色相分割による色生成アルゴリズム
 
@@ -361,9 +351,7 @@ class FibonacciColorGenerator(ColorGenerator):
         """フィボナッチ数列の逆数を初期化"""
         self.fibonacci_ratio = 0.381966011250105  # 1 - goldenRatio
 
-    def generate_colors(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         フィボナッチ数列を使用した色生成アルゴリズム
 
@@ -433,9 +421,7 @@ class ColorWheelColorGenerator(ColorGenerator):
         # 基本色相を定義（赤、黄、緑、シアン、青、マゼンタ）
         self.base_hues = [0, 60, 120, 180, 240, 300]
 
-    def generate_colors(
-        self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0
-    ) -> List[str]:
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
         カラーホイール理論に基づく補色・三色配色アルゴリズム
 
@@ -522,7 +508,5 @@ if __name__ == "__main__":
     print(f"カラーホイール色: {color_wheel_color.generate(5)}")
 
     # パラメータを変更して使用
-    print(
-        f"\n高彩度黄金比色: {golden_color.generate(3, saturation=0.9, lightness=0.5)}"
-    )
+    print(f"\n高彩度黄金比色: {golden_color.generate(3, saturation=0.9, lightness=0.5)}")
     print(f"オフセット等間隔色: {equidistant_color.generate(3, offset=90)}")

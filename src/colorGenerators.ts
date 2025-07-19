@@ -10,11 +10,7 @@
  * @param lightness 明度（0.0-1.0、0.0=黒、0.5=通常、1.0=白）
  * @returns RGB値のタプル（r, g, b）- 各値は0-255の整数
  */
-function hslToRgb(
-  hue: number,
-  saturation: number,
-  lightness: number
-): [number, number, number] {
+function hslToRgb(hue: number, saturation: number, lightness: number): [number, number, number] {
   const h = hue % 360;
 
   // HSLからRGBへの変換
@@ -50,11 +46,7 @@ function hslToRgb(
     b = x;
   }
 
-  return [
-    Math.round((r + m) * 255),
-    Math.round((g + m) * 255),
-    Math.round((b + m) * 255),
-  ];
+  return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
 }
 
 /**
@@ -66,9 +58,7 @@ function hslToRgb(
  * @returns hex形式の色文字列（#RRGGBB形式）
  */
 function rgbToHex(r: number, g: number, b: number): string {
-  return `#${r.toString(16).padStart(2, "0")}${g
-    .toString(16)
-    .padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
 /**
@@ -90,12 +80,7 @@ export interface ColorGenerator {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generateColors(
-    n: number,
-    saturation?: number,
-    lightness?: number,
-    offset?: number
-  ): string[];
+  generateColors(n: number, saturation?: number, lightness?: number, offset?: number): string[];
 }
 
 /**
@@ -128,18 +113,8 @@ export class Color {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generate(
-    n: number,
-    saturation: number = 0.8,
-    lightness: number = 0.6,
-    offset: number = 0
-  ): string[] {
-    return this._colorGenerator.generateColors(
-      n,
-      saturation,
-      lightness,
-      offset
-    );
+  generate(n: number, saturation: number = 0.8, lightness: number = 0.6, offset: number = 0): string[] {
+    return this._colorGenerator.generateColors(n, saturation, lightness, offset);
   }
 }
 
@@ -169,14 +144,9 @@ export class GoldenRatioColorGenerator implements ColorGenerator {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generateColors(
-    n: number,
-    saturation: number = 0.8,
-    lightness: number = 0.6,
-    offset: number = 0
-  ): string[] {
+  generateColors(n: number, saturation: number = 0.8, lightness: number = 0.6, offset: number = 0): string[] {
     if (n <= 0) {
-      throw new Error("色の数は1以上である必要があります");
+      throw new Error('色の数は1以上である必要があります');
     }
 
     const colors: string[] = [];
@@ -217,14 +187,9 @@ export class EquidistantColorGenerator implements ColorGenerator {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generateColors(
-    n: number,
-    saturation: number = 0.8,
-    lightness: number = 0.6,
-    offset: number = 0
-  ): string[] {
+  generateColors(n: number, saturation: number = 0.8, lightness: number = 0.6, offset: number = 0): string[] {
     if (n <= 0) {
-      throw new Error("色の数は1以上である必要があります");
+      throw new Error('色の数は1以上である必要があります');
     }
 
     const colors: string[] = [];
@@ -267,14 +232,9 @@ export class FibonacciColorGenerator implements ColorGenerator {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generateColors(
-    n: number,
-    saturation: number = 0.8,
-    lightness: number = 0.6,
-    offset: number = 0
-  ): string[] {
+  generateColors(n: number, saturation: number = 0.8, lightness: number = 0.6, offset: number = 0): string[] {
     if (n <= 0) {
-      throw new Error("色の数は1以上である必要があります");
+      throw new Error('色の数は1以上である必要があります');
     }
 
     const colors: string[] = [];
@@ -317,14 +277,9 @@ export class ColorWheelColorGenerator implements ColorGenerator {
    * @param offset 色相の開始オフセット（0-360度、デフォルト: 0）
    * @returns hex形式の色文字列の配列
    */
-  generateColors(
-    n: number,
-    saturation: number = 0.8,
-    lightness: number = 0.6,
-    offset: number = 0
-  ): string[] {
+  generateColors(n: number, saturation: number = 0.8, lightness: number = 0.6, offset: number = 0): string[] {
     if (n <= 0) {
-      throw new Error("色の数は1以上である必要があります");
+      throw new Error('色の数は1以上である必要があります');
     }
 
     const colors: string[] = [];
@@ -340,10 +295,7 @@ export class ColorWheelColorGenerator implements ColorGenerator {
         const baseIndex = Math.floor(i / (n / 6));
         const nextIndex = (baseIndex + 1) % 6;
         const ratio = (i % (n / 6)) / (n / 6);
-        hue =
-          this.baseHues[baseIndex] +
-          (this.baseHues[nextIndex] - this.baseHues[baseIndex]) * ratio +
-          offset;
+        hue = this.baseHues[baseIndex] + (this.baseHues[nextIndex] - this.baseHues[baseIndex]) * ratio + offset;
       }
 
       // 360度を超えた場合の処理

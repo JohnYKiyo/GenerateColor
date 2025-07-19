@@ -4,7 +4,11 @@
   "description": "数学的理論に基づく色生成アルゴリズムの比較",
   "main": "src/colorGenerators.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts"
   },
   "keywords": [
     "color",
@@ -17,7 +21,11 @@
   "author": "GenerateColor",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
   },
   "repository": {
     "type": "git",
