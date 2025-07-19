@@ -12,7 +12,7 @@
 
 ## 🚀 デモ
 
-[デモページを見る](https://yourusername.github.io/GenerateColor)
+[デモページを見る](https://www.johnkiyo.com/GenerateColor/)
 
 > **注意**: GitHub Pages の設定が必要です。リポジトリの Settings → Pages → Source で "GitHub Actions" を選択してください。
 
