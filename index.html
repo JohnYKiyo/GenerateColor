@@ -240,175 +240,14 @@
     </footer>
 
     <!-- 色生成アルゴリズムのJavaScript実装 -->
-    <script>
-        // 黄金比を使用して色相を決定するアルゴリズム
-        const generateGoldenRatioColors = (n, saturation = 0.8, lightness = 0.6, offset = 0) => {
-            const colors = [];
-            const goldenRatio = 0.618033988749895;
-
-            for (let i = 0; i < n; i++) {
-                const hue = ((i * goldenRatio) % 1.0) * 360 + offset;
-                const h = hue % 360;
-
-                // HSLからRGBへの変換
-                const c = (1 - Math.abs(2 * lightness - 1)) * saturation;
-                const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-                const m = lightness - c / 2;
-
-                let r, g, b;
-
-                if (h < 60) {
-                    r = c; g = x; b = 0;
-                } else if (h < 120) {
-                    r = x; g = c; b = 0;
-                } else if (h < 180) {
-                    r = 0; g = c; b = x;
-                } else if (h < 240) {
-                    r = 0; g = x; b = c;
-                } else if (h < 300) {
-                    r = x; g = 0; b = c;
-                } else {
-                    r = c; g = 0; b = x;
-                }
-
-                const red = Math.round((r + m) * 255);
-                const green = Math.round((g + m) * 255);
-                const blue = Math.round((b + m) * 255);
-
-                colors.push(`#${red.toString(16).padStart(2, "0")}${green.toString(16).padStart(2, "0")}${blue.toString(16).padStart(2, "0")}`);
-            }
-
-            return colors;
-        };
-
-        // 等間隔色相分割による色生成アルゴリズム
-        const generateEquidistantColors = (n, saturation = 0.8, lightness = 0.6, offset = 0) => {
-            const colors = [];
-
-            for (let i = 0; i < n; i++) {
-                const hue = (i / n) * 360 + offset;
-                const h = hue % 360;
-
-                // HSLからRGBへの変換
-                const c = (1 - Math.abs(2 * lightness - 1)) * saturation;
-                const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-                const m = lightness - c / 2;
-
-                let r, g, b;
-
-                if (h < 60) {
-                    r = c; g = x; b = 0;
-                } else if (h < 120) {
-                    r = x; g = c; b = 0;
-                } else if (h < 180) {
-                    r = 0; g = c; b = x;
-                } else if (h < 240) {
-                    r = 0; g = x; b = c;
-                } else if (h < 300) {
-                    r = x; g = 0; b = c;
-                } else {
-                    r = c; g = 0; b = x;
-                }
-
-                const red = Math.round((r + m) * 255);
-                const green = Math.round((g + m) * 255);
-                const blue = Math.round((b + m) * 255);
-
-                colors.push(`#${red.toString(16).padStart(2, "0")}${green.toString(16).padStart(2, "0")}${blue.toString(16).padStart(2, "0")}`);
-            }
-
-            return colors;
-        };
-
-        // フィボナッチ数列を使用した色生成アルゴリズム
-        const generateFibonacciColors = (n, saturation = 0.8, lightness = 0.6, offset = 0) => {
-            const colors = [];
-            const fibonacciRatio = 0.381966011250105;
-
-            for (let i = 0; i < n; i++) {
-                const hue = ((i * fibonacciRatio) % 1.0) * 360 + offset;
-                const h = hue % 360;
-
-                // HSLからRGBへの変換
-                const c = (1 - Math.abs(2 * lightness - 1)) * saturation;
-                const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-                const m = lightness - c / 2;
-
-                let r, g, b;
-
-                if (h < 60) {
-                    r = c; g = x; b = 0;
-                } else if (h < 120) {
-                    r = x; g = c; b = 0;
-                } else if (h < 180) {
-                    r = 0; g = c; b = x;
-                } else if (h < 240) {
-                    r = 0; g = x; b = c;
-                } else if (h < 300) {
-                    r = x; g = 0; b = c;
-                } else {
-                    r = c; g = 0; b = x;
-                }
-
-                const red = Math.round((r + m) * 255);
-                const green = Math.round((g + m) * 255);
-                const blue = Math.round((b + m) * 255);
-
-                colors.push(`#${red.toString(16).padStart(2, "0")}${green.toString(16).padStart(2, "0")}${blue.toString(16).padStart(2, "0")}`);
-            }
-
-            return colors;
-        };
-
-        // カラーホイール理論に基づく補色・三色配色アルゴリズム
-        const generateColorWheelColors = (n, saturation = 0.8, lightness = 0.6, offset = 0) => {
-            const colors = [];
-            const baseHues = [0, 60, 120, 180, 240, 300];
-
-            for (let i = 0; i < n; i++) {
-                let hue;
-
-                if (n <= 6) {
-                    hue = baseHues[i % 6] + offset;
-                } else {
-                    const baseIndex = Math.floor(i / (n / 6));
-                    const nextIndex = (baseIndex + 1) % 6;
-                    const ratio = (i % (n / 6)) / (n / 6);
-                    hue = baseHues[baseIndex] + (baseHues[nextIndex] - baseHues[baseIndex]) * ratio + offset;
-                }
-
-                hue = hue % 360;
-
-                // HSLからRGBへの変換
-                const c = (1 - Math.abs(2 * lightness - 1)) * saturation;
-                const x = c * (1 - Math.abs(((hue / 60) % 2) - 1));
-                const m = lightness - c / 2;
-
-                let r, g, b;
-
-                if (hue < 60) {
-                    r = c; g = x; b = 0;
-                } else if (hue < 120) {
-                    r = x; g = c; b = 0;
-                } else if (hue < 180) {
-                    r = 0; g = c; b = x;
-                } else if (hue < 240) {
-                    r = 0; g = x; b = c;
-                } else if (hue < 300) {
-                    r = x; g = 0; b = c;
-                } else {
-                    r = c; g = 0; b = x;
-                }
-
-                const red = Math.round((r + m) * 255);
-                const green = Math.round((g + m) * 255);
-                const blue = Math.round((b + m) * 255);
-
-                colors.push(`#${red.toString(16).padStart(2, "0")}${green.toString(16).padStart(2, "0")}${blue.toString(16).padStart(2, "0")}`);
-            }
-
-            return colors;
-        };
+    <script type="module">
+        import {
+            Color,
+            GoldenRatioColorGenerator,
+            EquidistantColorGenerator,
+            FibonacciColorGenerator,
+            ColorWheelColorGenerator
+        } from './src/colorGenerators.ts';
 
         // 色カードを生成する関数
         const createColorCard = (color, index) => {
@@ -425,10 +264,15 @@
         // ページ読み込み時に色を生成
         document.addEventListener('DOMContentLoaded', () => {
             // 固定の色セットを生成
-            const equidistantColors = generateEquidistantColors(20);
-            const fibonacciColors = generateFibonacciColors(20);
-            const colorWheelColors = generateColorWheelColors(20);
-            const goldenRatioColors = generateGoldenRatioColors(20);
+            const goldenColor = new Color(new GoldenRatioColorGenerator());
+            const equidistantColor = new Color(new EquidistantColorGenerator());
+            const fibonacciColor = new Color(new FibonacciColorGenerator());
+            const colorWheelColor = new Color(new ColorWheelColorGenerator());
+
+            const equidistantColors = equidistantColor.generate(20);
+            const fibonacciColors = fibonacciColor.generate(20);
+            const colorWheelColors = colorWheelColor.generate(20);
+            const goldenRatioColors = goldenColor.generate(20);
 
             // 色カードを表示
             document.getElementById('equidistant-colors').innerHTML = 
@@ -494,24 +338,27 @@
             const saturation = parseFloat(document.getElementById('saturation-slider').value);
             const lightness = parseFloat(document.getElementById('lightness-slider').value);
             
-            let colors;
+            let colorGenerator;
             
             switch(algorithm) {
                 case 'golden-ratio':
-                    colors = generateGoldenRatioColors(colorCount, saturation, lightness, 0);
+                    colorGenerator = new GoldenRatioColorGenerator();
                     break;
                 case 'equidistant':
-                    colors = generateEquidistantColors(colorCount, saturation, lightness, 0);
+                    colorGenerator = new EquidistantColorGenerator();
                     break;
                 case 'fibonacci':
-                    colors = generateFibonacciColors(colorCount, saturation, lightness, 0);
+                    colorGenerator = new FibonacciColorGenerator();
                     break;
                 case 'color-wheel':
-                    colors = generateColorWheelColors(colorCount, saturation, lightness, 0);
+                    colorGenerator = new ColorWheelColorGenerator();
                     break;
                 default:
-                    colors = generateGoldenRatioColors(colorCount, saturation, lightness, 0);
+                    colorGenerator = new GoldenRatioColorGenerator();
             }
+            
+            const color = new Color(colorGenerator);
+            const colors = color.generate(colorCount, saturation, lightness, 0);
             
             document.getElementById('interactive-colors').innerHTML = 
                 colors.map((color, index) => createColorCard(color, index)).join('');
