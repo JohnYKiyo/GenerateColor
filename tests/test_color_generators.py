@@ -2,14 +2,9 @@
 色生成アルゴリズムのテストファイル - シンプルな抽象クラス設計対応版
 """
 
-import os
-import sys
 import unittest
 
-# srcディレクトリをパスに追加
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-
-from color_generators import (  # 抽象クラスと実装クラス; Colorクラス; ユーティリティ関数
+from src.color_generators import (  # 抽象クラスと実装クラス; Colorクラス; ユーティリティ関数
     Color,
     ColorGenerator,
     ColorWheelColorGenerator,
@@ -141,15 +136,11 @@ class TestColorGenerators(unittest.TestCase):
             GoldenRatioColorGenerator().generate_colors(0)
 
         # 彩度が範囲外の場合
-        colors = GoldenRatioColorGenerator().generate_colors(
-            3, saturation=1.5
-        )  # 範囲外だが動作する
+        colors = GoldenRatioColorGenerator().generate_colors(3, saturation=1.5)  # 範囲外だが動作する
         self.assertEqual(len(colors), 3)
 
         # 明度が範囲外の場合
-        colors = GoldenRatioColorGenerator().generate_colors(
-            3, lightness=1.5
-        )  # 範囲外だが動作する
+        colors = GoldenRatioColorGenerator().generate_colors(3, lightness=1.5)  # 範囲外だが動作する
         self.assertEqual(len(colors), 3)
 
     def test_offset_parameter(self):

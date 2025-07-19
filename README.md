@@ -35,7 +35,7 @@ import {
   EquidistantColorGenerator,
   FibonacciColorGenerator,
   ColorWheelColorGenerator,
-} from "generate-color";
+} from 'generate-color';
 
 // 黄金比アルゴリズムを使用
 const goldenColor = new Color(new GoldenRatioColorGenerator());
@@ -65,12 +65,7 @@ const colors = equidistantColor.generate(3, 0.8, 0.6, 90);
 ```typescript
 class Color {
   constructor(colorGenerator: ColorGenerator);
-  generate(
-    n: number,
-    saturation?: number,
-    lightness?: number,
-    offset?: number
-  ): string[];
+  generate(n: number, saturation?: number, lightness?: number, offset?: number): string[];
 }
 ```
 
@@ -78,12 +73,7 @@ class Color {
 
 ```typescript
 interface ColorGenerator {
-  generateColors(
-    n: number,
-    saturation?: number,
-    lightness?: number,
-    offset?: number
-  ): string[];
+  generateColors(n: number, saturation?: number, lightness?: number, offset?: number): string[];
 }
 ```
 
@@ -115,6 +105,17 @@ Python 版の実装については [README_Python.md](README_Python.md) をご�
 
 このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルを参照してください。
 
+## 開発環境
+
+開発環境のセットアップと使用方法については、[README_dev.md](README_dev.md)をご覧ください。
+
+このプロジェクトでは、GitHub Actionsを使用して以下の自動チェックを実行しています：
+
+- **TypeScript**: ESLint + Prettier
+- **Python**: Black + isort + flake8 (PEP8準拠)
+
+プルリクエストを作成すると、自動的にコード品質チェックが実行されます。
+
 ## コントリビューション
 
 1. このリポジトリをフォーク
@@ -122,6 +123,8 @@ Python 版の実装については [README_Python.md](README_Python.md) をご�
 3. 変更をコミット (`git commit -m 'Add xxxx feature'`)
 4. ブランチにプッシュ (`git push origin feature/xxxx-feature`)
 5. プルリクエストを作成
+
+**注意**: プルリクエストを作成する前に、ローカルでコード品質チェックを実行することをお勧めします。
 
 ## 参考文献
 
