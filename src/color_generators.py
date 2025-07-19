@@ -2,10 +2,10 @@
 数学的理論に基づく色生成アルゴリズム - Python版
 
 参考文献:
-- Johannes Itten "The Art of Color" (1961) - 黄金比の色彩応用
-- Cynthia Brewer "Color in Information Display" (1999) - データ可視化の色選択
-- "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s)
-- Johannes Itten "The Art of Color" (1961) - カラーホイール理論
+
+- "Introduction, Explanation & Calculation," Golden Ratio Colors.[https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/](https://goldenratiocolors.com/introduction-explanation-calculation-golden-ratio-colours/)
+- J. Chao, I. Osugi, and M. Suzuki, "On Definitions and Construction of Uniform Color Space," in Conference on Colour in Graphics, Imaging, and Vision, vol. 2, no. 1, 2004, p. 55. doi: 10.2352/CGIV.2004.2.1.art00012.
+- J. Itten, The Art of Color. [https://www.blinkist.com/en/books/the-art-of-color-en](https://www.blinkist.com/en/books/the-art-of-color-en)
 """
 
 from abc import ABC, abstractmethod
@@ -193,7 +193,6 @@ class GoldenRatioColorGenerator(ColorGenerator):
     黄金比を使用して色相を決定するアルゴリズム
 
     自然界の美しい比率である黄金比（約1.618）を使用して色相を決定します。
-    Johannes Ittenの色彩理論に基づき、調和の取れた色の組み合わせを生成します。
 
     Attributes:
         golden_ratio (float): 黄金比の値（約0.618）
@@ -202,8 +201,7 @@ class GoldenRatioColorGenerator(ColorGenerator):
         generate_colors: 黄金比に基づく色生成
 
     References:
-        - Johannes Itten "The Art of Color" (1961) - 黄金比の色彩応用
-        - 自然界の美しい比率を色彩に応用した調和理論
+        - "Introduction, Explanation & Calculation," Golden Ratio Colors.
 
     Example:
         >>> generator = GoldenRatioColorGenerator()
@@ -272,8 +270,7 @@ class EquidistantColorGenerator(ColorGenerator):
         generate_colors: 等間隔色相分割による色生成
 
     References:
-        - Cynthia Brewer "Color in Information Display" (1999) - データ可視化の色選択
-        - 科学的根拠に基づく色覚障害者にも配慮した色パレット設計
+        - J. Chao, I. Osugi, and M. Suzuki, "On Definitions and Construction of Uniform Color Space," in Conference on Colour in Graphics, Imaging, and Vision, vol. 2, no. 1, 2004, p. 55. doi: 10.2352/CGIV.2004.2.1.art00012.
 
     Example:
         >>> generator = EquidistantColorGenerator()
@@ -335,10 +332,6 @@ class FibonacciColorGenerator(ColorGenerator):
 
     Methods:
         generate_colors: フィボナッチ数列に基づく色生成
-
-    References:
-        - "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s)
-        - 数学的パターンを色彩美学に応用した研究
 
     Example:
         >>> generator = FibonacciColorGenerator()
@@ -406,8 +399,7 @@ class ColorWheelColorGenerator(ColorGenerator):
         generate_colors: カラーホイール理論に基づく色生成
 
     References:
-        - Johannes Itten "The Art of Color" (1961) - カラーホイール理論
-        - 補色・三色配色など、視覚的調和を数学的に体系化した理論
+        - J. Itten, The Art of Color.
 
     Example:
         >>> generator = ColorWheelColorGenerator()
