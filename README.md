@@ -1,168 +1,130 @@
-# 🎨 GenerateColor - 数学的理論に基づく色生成アルゴリズム
+# GenerateColor
 
-数学的理論に基づいて美しい色の組み合わせを生成する TypeScript ライブラリです。4 つの異なるアルゴリズムを実装し、それぞれが異なる用途やデザイン要件に適した色の組み合わせを提供します。
+数学的理論に基づく色生成アルゴリズムを提供する TypeScript のライブラリです。黄金比、等間隔分割、フィボナッチ数列、カラーホイール理論に基づいて美しい色の組み合わせを生成できます。
 
-## 🌟 特徴
+## デモ
 
-- **4 つの異なる色生成アルゴリズム**を実装
-- **数学的理論**に基づく美しい色の組み合わせ
-- **TypeScript**で型安全な実装
-- **インタラクティブなデモページ**で実際の色を確認可能
-- **学術的参考文献**に基づく実装
+実際の動作を確認したい場合は、[デモページ](https://www.johnkiyo.com/GenerateColor/)をご覧ください。
 
-## 🚀 デモ
+## 実装されているアルゴリズム
 
-[デモページを見る](https://www.johnkiyo.com/GenerateColor/)
+### 1. 黄金比 (Golden Ratio)
 
-> **注意**: GitHub Pages の設定が必要です。リポジトリの Settings → Pages → Source で "GitHub Actions" を選択してください。
+自然界の美しい比率である黄金比を使用して色相を決定します。Johannes Itten の色彩理論に基づき、調和の取れた色の組み合わせを生成します。
 
-## 📚 実装されているアルゴリズム
+### 2. 等間隔分割 (Equidistant)
 
-### 1. 等間隔色相分割 (Equidistant Colors)
+色相を等間隔に分割することで色を生成します。最もシンプルで確実に色が分散されるため、データ可視化や UI デザインに適しています。
 
-- **用途**: データ可視化、チャート、グラフ
-- **特徴**: 最もシンプルで確実に色が分散される
-- **参考文献**: Cynthia Brewer "Color in Information Display" (1999)
+### 3. フィボナッチ数列 (Fibonacci)
 
-### 2. フィボナッチ数列 (Fibonacci Colors)
+フィボナッチ数列の逆数を使用して色相を決定します。黄金比に似ているが、より数学的に興味深い分布を生成します。
 
-- **用途**: 芸術的アプリケーション、デザイン
-- **特徴**: 数学的に興味深い分布
-- **参考文献**: "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts
+### 4. カラーホイール (Color Wheel)
 
-### 3. カラーホイール理論 (Color Wheel Colors)
+Johannes Itten のカラーホイール理論に基づいて色を生成します。補色・三色配色など、視覚的調和を数学的に体系化した理論を実装しています。
 
-- **用途**: デザイン、アート作品
-- **特徴**: 補色・三色配色理論に基づく調和の取れた配色
-- **参考文献**: Johannes Itten "The Art of Color" (1961)
+## 使用方法
 
-### 4. 黄金比 (Golden Ratio Colors)
-
-- **用途**: 芸術作品、高級感のあるデザイン
-- **特徴**: 自然界の美しい比率を色彩に応用
-- **参考文献**: Johannes Itten "The Art of Color" (1961)
-
-## 📦 インストール
-
-```bash
-npm install generate-color
-```
-
-## 🔧 使用方法
+### 基本的な使用例
 
 ```typescript
 import {
-  generateGoldenRatioColors,
-  generateEquidistantColors,
-  generateFibonacciColors,
-  generateColorWheelColors,
+  Color,
+  GoldenRatioColorGenerator,
+  EquidistantColorGenerator,
+  FibonacciColorGenerator,
+  ColorWheelColorGenerator,
 } from "generate-color";
 
-// 黄金比を使用して10色生成
-const goldenColors = generateGoldenRatioColors(10);
+// 黄金比アルゴリズムを使用
+const goldenColor = new Color(new GoldenRatioColorGenerator());
+const colors = goldenColor.generate(5);
+console.log(colors); // ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
 
-// 等間隔で20色生成（彩度0.9、明度0.7）
-const equidistantColors = generateEquidistantColors(20, 0.9, 0.7);
-
-// フィボナッチ数列で15色生成（オフセット30度）
-const fibonacciColors = generateFibonacciColors(15, 0.8, 0.6, 30);
-
-// カラーホイール理論で12色生成
-const colorWheelColors = generateColorWheelColors(12);
+// 等間隔アルゴリズムを使用
+const equidistantColor = new Color(new EquidistantColorGenerator());
+const colors = equidistantColor.generate(6);
+console.log(colors); // ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
 ```
 
-## 🛠️ 開発
-
-### セットアップ
-
-```bash
-git clone https://github.com/yourusername/GenerateColor.git
-cd GenerateColor
-npm install
-```
-
-### ビルド
-
-```bash
-npm run build
-```
-
-### 開発モード
-
-```bash
-npm run dev
-```
-
-## 📖 API リファレンス
-
-### generateGoldenRatioColors(n, saturation?, lightness?, offset?)
-
-黄金比を使用して色相を決定するアルゴリズム
-
-**パラメータ:**
-
-- `n` (number): 生成する色の数
-- `saturation` (number, optional): 彩度 (0-1, デフォルト: 0.8)
-- `lightness` (number, optional): 明度 (0-1, デフォルト: 0.6)
-- `offset` (number, optional): 色相の開始オフセット (0-360 度, デフォルト: 0)
-
-**戻り値:** `string[]` - 色のリスト（hex 形式）
-
-### generateEquidistantColors(n, saturation?, lightness?, offset?)
-
-等間隔色相分割による色生成アルゴリズム
-
-**パラメータ:** 同上
-
-### generateFibonacciColors(n, saturation?, lightness?, offset?)
-
-フィボナッチ数列を使用した色生成アルゴリズム
-
-**パラメータ:** 同上
-
-### generateColorWheelColors(n, saturation?, lightness?, offset?)
-
-カラーホイール理論に基づく補色・三色配色アルゴリズム
-
-**パラメータ:** 同上
-
-## 🎯 使用例
-
-### データ可視化での使用
+### パラメータの調整
 
 ```typescript
-// チャート用の色パレット生成
-const chartColors = generateEquidistantColors(8, 0.8, 0.6);
+// 彩度と明度を調整
+const colors = goldenColor.generate(3, 0.9, 0.5);
+
+// 色相の開始位置を調整
+const colors = equidistantColor.generate(3, 0.8, 0.6, 90);
 ```
 
-### デザインシステムでの使用
+## API リファレンス
+
+### Color クラス
 
 ```typescript
-// ブランドカラーパレット生成
-const brandColors = generateGoldenRatioColors(6, 0.9, 0.5);
+class Color {
+  constructor(colorGenerator: ColorGenerator);
+  generate(
+    n: number,
+    saturation?: number,
+    lightness?: number,
+    offset?: number
+  ): string[];
+}
 ```
 
-### アート作品での使用
+### ColorGenerator インターフェース
 
 ```typescript
-// 芸術的な色の組み合わせ
-const artisticColors = generateFibonacciColors(12, 0.7, 0.7);
+interface ColorGenerator {
+  generateColors(
+    n: number,
+    saturation?: number,
+    lightness?: number,
+    offset?: number
+  ): string[];
+}
 ```
 
-## 📄 ライセンス
+### 実装クラス
 
-MIT License
+```typescript
+class GoldenRatioColorGenerator implements ColorGenerator
+class EquidistantColorGenerator implements ColorGenerator
+class FibonacciColorGenerator implements ColorGenerator
+class ColorWheelColorGenerator implements ColorGenerator
+```
 
-## 🤝 コントリビューション
+### パラメータ
 
-プルリクエストやイシューの報告を歓迎します！
+- `n`: 生成する色の数（1 以上の整数）
+- `saturation`: 彩度（0.0-1.0 の範囲、デフォルト: 0.8）
+- `lightness`: 明度（0.0-1.0 の範囲、デフォルト: 0.6）
+- `offset`: 色相の開始オフセット（0-360 度、デフォルト: 0）
 
-## 📚 参考文献
+### 戻り値
 
-- Johannes Itten "The Art of Color" (1961)
-- Cynthia Brewer "Color in Information Display" (1999)
-- "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s)
+hex 形式の色文字列の配列（例: `["#ff0000", "#00ff00", "#0000ff"]`）
 
-## 🌟 スター
+## その他の言語
 
-このプロジェクトが役に立ったら、スターを付けてください！
+Python 版の実装については [README_Python.md](README_Python.md) をご覧ください。
+
+## ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルを参照してください。
+
+## コントリビューション
+
+1. このリポジトリをフォーク
+2. 機能ブランチを作成 (`git checkout -b feature/xxxx-feature`)
+3. 変更をコミット (`git commit -m 'Add xxxx feature'`)
+4. ブランチにプッシュ (`git push origin feature/xxxx-feature`)
+5. プルリクエストを作成
+
+## 参考文献
+
+- Johannes Itten "The Art of Color" (1961) - 黄金比の色彩応用とカラーホイール理論
+- Cynthia Brewer "Color in Information Display" (1999) - データ可視化の色選択理論
+- "Fibonacci Numbers in Nature and Art" - Journal of Mathematics and the Arts (2000s) - 数学的パターンを色彩美学に応用した研究
