@@ -1,6 +1,6 @@
 # GenerateColor
 
-数学的理論に基づく色生成アルゴリズムを提供する TypeScript のライブラリです。黄金比、等間隔分割、フィボナッチ数列、カラーホイール理論に基づいて美しい色の組み合わせを生成できます。
+数学的理論に基づく色生成アルゴリズムを提供するライブラリです。TypeScript版とPython版の両方を提供し、黄金比、等間隔分割、フィボナッチ数列、カラーホイール理論に基づいて美しい色の組み合わせを生成できます。
 
 ## デモ
 
@@ -26,7 +26,9 @@ Johannes Itten のカラーホイール理論に基づいて色を生成しま�
 
 ## 使用方法
 
-### 基本的な使用例
+### TypeScript版
+
+#### TypeScript 基本的な使用例
 
 ```typescript
 import {
@@ -48,7 +50,7 @@ const colors = equidistantColor.generate(6);
 console.log(colors); // ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
 ```
 
-### パラメータの調整
+#### TypeScript パラメータの調整
 
 ```typescript
 // 彩度と明度を調整
@@ -58,9 +60,52 @@ const colors = goldenColor.generate(3, 0.9, 0.5);
 const colors = equidistantColor.generate(3, 0.8, 0.6, 90);
 ```
 
+### Python版
+
+#### Python 基本的な使用例
+
+```python
+from src.color_generators import (
+    Color,
+    GoldenRatioColorGenerator,
+    EquidistantColorGenerator
+)
+
+# 黄金比アルゴリズムを使用
+golden_color = Color(GoldenRatioColorGenerator())
+colors = golden_color.generate(5)
+print(colors)  # ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
+
+# 等間隔アルゴリズムを使用
+equidistant_color = Color(EquidistantColorGenerator())
+colors = equidistant_color.generate(6)
+print(colors)  # ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
+```
+
+#### Python パラメータの調整
+
+```python
+# 彩度と明度を調整
+colors = golden_color.generate(3, saturation=0.9, lightness=0.5)
+
+# 色相の開始位置を調整
+colors = equidistant_color.generate(3, offset=90)
+```
+
+#### 直接インスタンス化
+
+```python
+from src.color_generators import GoldenRatioColorGenerator
+
+generator = GoldenRatioColorGenerator()
+colors = generator.generate_colors(8, saturation=0.9, lightness=0.5)
+```
+
 ## API リファレンス
 
-### Color クラス
+### TypeScript API
+
+#### TypeScript Color クラス
 
 ```typescript
 class Color {
@@ -69,7 +114,7 @@ class Color {
 }
 ```
 
-### ColorGenerator インターフェース
+#### TypeScript ColorGenerator インターフェース
 
 ```typescript
 interface ColorGenerator {
@@ -77,7 +122,7 @@ interface ColorGenerator {
 }
 ```
 
-### 実装クラス
+#### 実装クラス
 
 ```typescript
 class GoldenRatioColorGenerator implements ColorGenerator
@@ -86,7 +131,25 @@ class FibonacciColorGenerator implements ColorGenerator
 class ColorWheelColorGenerator implements ColorGenerator
 ```
 
-### パラメータ
+### Python API
+
+#### Python Color クラス
+
+```python
+class Color:
+    def __init__(self, color_generator: ColorGenerator)
+    def generate(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]
+```
+
+#### Python ColorGenerator 抽象クラス
+
+```python
+class ColorGenerator(ABC):
+    @abstractmethod
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]
+```
+
+### 共通パラメータ
 
 - `n`: 生成する色の数（1 以上の整数）
 - `saturation`: 彩度（0.0-1.0 の範囲、デフォルト: 0.8）
@@ -95,19 +158,9 @@ class ColorWheelColorGenerator implements ColorGenerator
 
 ### 戻り値
 
-hex 形式の色文字列の配列（例: `["#ff0000", "#00ff00", "#0000ff"]`）
-
-## その他の言語
-
-Python 版の実装については [README_Python.md](README_Python.md) をご覧ください。
-
-## ライセンス
-
-このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルを参照してください。
+hex 形式の色文字列の配列/リスト（例: `["#ff0000", "#00ff00", "#0000ff"]`）
 
 ## 開発環境
-
-開発環境のセットアップと使用方法については、[README_dev.md](README_dev.md)をご覧ください。
 
 このプロジェクトでは、GitHub Actionsを使用して以下の自動チェックを実行しています：
 
@@ -125,6 +178,10 @@ Python 版の実装については [README_Python.md](README_Python.md) をご�
 5. プルリクエストを作成
 
 **注意**: プルリクエストを作成する前に、ローカルでコード品質チェックを実行することをお勧めします。
+
+## ライセンス
+
+このプロジェクトは MIT ライセンスの下で公開されています。詳細は [LICENSE](LICENSE) ファイルを参照してください。
 
 ## 参考文献
 

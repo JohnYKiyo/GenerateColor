@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>色生成アルゴリズム比較 - GenerateColor</title>
+    <title>Color Generation Algorithm Comparison - GenerateColor</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,224 +31,225 @@
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-    <!-- ヘッダー -->
+    <!-- Header -->
     <header class="gradient-bg text-white py-8">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center mb-4">
                 <div></div>
                 <div class="flex space-x-2">
-                    <button class="px-3 py-1 bg-white bg-opacity-20 rounded-md text-white">日本語</button>
-                    <a href="index_en.html" class="px-3 py-1 bg-white bg-opacity-10 rounded-md text-white hover:bg-opacity-30 transition-all">English</a>
+                    <a href="index.html" class="px-3 py-1 bg-white bg-opacity-10 rounded-md text-white hover:bg-opacity-30 transition-all">日本語</a>
+                    <button class="px-3 py-1 bg-white bg-opacity-20 rounded-md text-white">English</button>
                 </div>
             </div>
-            <h1 class="text-4xl font-bold text-center mb-2">🎨 色生成アルゴリズム比較</h1>
-            <p class="text-center text-lg opacity-90">数学的理論に基づく美しい色の生成</p>
+            <h1 class="text-4xl font-bold text-center mb-2">🎨 Color Generation Algorithm Comparison</h1>
+            <p class="text-center text-lg opacity-90">Beautiful color generation based on mathematical theories</p>
         </div>
     </header>
 
-    <!-- メインコンテンツ -->
+    <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-        <!-- 概要セクション -->
+        <!-- Overview Section -->
         <section class="mb-12">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">概要</h2>
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Overview</h2>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
-                    このプロジェクトでは、4つの異なる数学的理論に基づいて色を生成するアルゴリズムを実装しています。
-                    それぞれのアルゴリズムは、異なる用途やデザイン要件に適した色の組み合わせを提供します。
+                    This project implements color generation algorithms based on four different mathematical theories.
+                    Each algorithm provides color combinations suitable for different purposes and design requirements.
                 </p>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-                        <h3 class="font-semibold text-blue-800 dark:text-blue-200">等間隔色</h3>
-                        <p class="text-sm text-blue-600 dark:text-blue-300">データ可視化に最適</p>
+                        <h3 class="font-semibold text-blue-800 dark:text-blue-200">Equidistant Colors</h3>
+                        <p class="text-sm text-blue-600 dark:text-blue-300">Optimal for data visualization</p>
                     </div>
                     <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
-                        <h3 class="font-semibold text-green-800 dark:text-green-200">フィボナッチ色</h3>
-                        <p class="text-sm text-green-600 dark:text-green-300">数学的に興味深い</p>
+                        <h3 class="font-semibold text-green-800 dark:text-green-200">Fibonacci Colors</h3>
+                        <p class="text-sm text-green-600 dark:text-green-300">Mathematically interesting</p>
                     </div>
                     <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
-                        <h3 class="font-semibold text-purple-800 dark:text-purple-200">カラーホイール色</h3>
-                        <p class="text-sm text-purple-600 dark:text-purple-300">デザイン理論に基づく</p>
+                        <h3 class="font-semibold text-purple-800 dark:text-purple-200">Color Wheel Colors</h3>
+                        <p class="text-sm text-purple-600 dark:text-purple-300">Based on design theory</p>
                     </div>
                     <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
-                        <h3 class="font-semibold text-yellow-800 dark:text-yellow-200">黄金比色</h3>
-                        <p class="text-sm text-yellow-600 dark:text-yellow-300">自然の美しさを再現</p>
+                        <h3 class="font-semibold text-yellow-800 dark:text-yellow-200">Golden Ratio Colors</h3>
+                        <p class="text-sm text-yellow-600 dark:text-yellow-300">Recreates natural beauty</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 色生成アルゴリズム比較 -->
+        <!-- Color Generation Algorithm Comparison -->
         <section>
-            <h2 class="mb-6 text-3xl font-bold text-gray-800 dark:text-gray-200">色生成アルゴリズム比較</h2>
+            <h2 class="mb-6 text-3xl font-bold text-gray-800 dark:text-gray-200">Color Generation Algorithm Comparison</h2>
             <div class="space-y-8">
-                <!-- 等間隔色 20色 -->
+                <!-- Equidistant Colors 20 colors -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">等間隔色 20色</h3>
+                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">Equidistant Colors - 20 colors</h3>
                     <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                        generateEquidistantColors(20) - 最もシンプルで確実に色が分散される
+                        generateEquidistantColors(20) - The simplest and most reliable method for color distribution
                     </p>
                     <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                        色相を360度を均等に分割して色を生成。データ可視化で最も一般的に使用され、予測可能で色の分布が均等。
-                        シンプルなため、多くの色が必要な場合に適している。
+                        Generates colors by dividing the 360-degree hue spectrum equally. Most commonly used in data visualization, 
+                        providing predictable and evenly distributed colors. Simple and suitable when many colors are needed.
                         <br />
-                        <strong>参考文献:</strong> Cynthia Brewer "Color in Information Display" (1999) -
-                        科学的根拠に基づく色覚障害者にも配慮した色パレット設計
+                        <strong>Reference:</strong> Cynthia Brewer "Color in Information Display" (1999) -
+                        Scientifically-based color palette design considering color vision deficiencies
                     </p>
                     <div class="grid grid-cols-10 gap-2" id="equidistant-colors">
-                        <!-- JavaScriptで生成 -->
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
 
-                <!-- フィボナッチ色 20色 -->
+                <!-- Fibonacci Colors 20 colors -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">フィボナッチ色 20色</h3>
+                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">Fibonacci Colors - 20 colors</h3>
                     <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                        generateFibonacciColors(20) - フィボナッチ数列を使用した数学的に興味深い色
+                        generateFibonacciColors(20) - Mathematically interesting colors using the Fibonacci sequence
                     </p>
                     <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                        フィボナッチ数列の逆数（約0.382）を使用して色相を決定。黄金比に似ているが、より数学的に興味深い分布。
-                        芸術的なアプリケーションやデザインに適しており、自然な美しさを持つ色の分布を生成。
+                        Uses the reciprocal of the Fibonacci sequence (approximately 0.382) to determine hue. 
+                        Similar to the golden ratio but generates a more mathematically interesting distribution.
+                        Suitable for artistic applications and design, creating color distributions with natural beauty.
                         <br />
-                        <strong>参考文献:</strong> "Fibonacci Numbers in Nature and Art" - Journal of Mathematics
-                        and the Arts (2000s) - 数学的パターンを色彩美学に応用した研究
+                        <strong>Reference:</strong> "Fibonacci Numbers in Nature and Art" - Journal of Mathematics
+                        and the Arts (2000s) - Research applying mathematical patterns to color aesthetics
                     </p>
                     <div class="grid grid-cols-10 gap-2" id="fibonacci-colors">
-                        <!-- JavaScriptで生成 -->
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
 
-                <!-- カラーホイール色 20色 -->
+                <!-- Color Wheel Colors 20 colors -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">カラーホイール色 20色</h3>
+                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">Color Wheel Colors - 20 colors</h3>
                     <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                        generateColorWheelColors(20) - カラーホイール理論に基づく洗練された色の組み合わせ
+                        generateColorWheelColors(20) - Sophisticated color combinations based on color wheel theory
                     </p>
                     <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                        基本色相（赤、黄、緑、シアン、青、マゼンタ）を基準に、補色・三色配色理論に基づいて色を生成。
-                        デザインやアート作品に最適で、色理論に基づいた調和の取れた配色を提供。
-                        6色以下の場合は基本色相を直接使用し、それ以上は補間で生成。
+                        Generates colors based on primary hues (red, yellow, green, cyan, blue, magenta) using 
+                        complementary and triadic color theory. Optimal for design and art, providing harmonious 
+                        color schemes based on color theory. Uses primary hues directly for 6 colors or fewer, 
+                        and interpolation for more colors.
                         <br />
-                        <strong>参考文献:</strong> Johannes Itten "The Art of Color" (1961) -
-                        補色・三色配色など、視覚的調和を数学的に体系化した理論
+                        <strong>Reference:</strong> Johannes Itten "The Art of Color" (1961) -
+                        Mathematically systematized theories of visual harmony including complementary and triadic color schemes
                     </p>
                     <div class="grid grid-cols-10 gap-2" id="colorwheel-colors">
-                        <!-- JavaScriptで生成 -->
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
 
-                <!-- 黄金比色 20色 -->
+                <!-- Golden Ratio Colors 20 colors -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">黄金比色 20色</h3>
+                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">Golden Ratio Colors - 20 colors</h3>
                     <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
-                        generateGoldenRatioColors(20) - 自然界の美しい比率を色彩に応用
+                        generateGoldenRatioColors(20) - Applying nature's beautiful ratio to color
                     </p>
                     <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
-                        黄金比（約0.618）を使用して色相を決定。自然界に多く見られる美しい比率で、視覚的に調和の取れた色の分布を生成。
-                        芸術作品や高級感のあるデザインに適しており、人間の目に自然で美しく感じられる色の組み合わせ。
-                        数学的にも興味深く、無限に続く色のパターンを生成。
+                        Uses the golden ratio (approximately 0.618) to determine hue. A beautiful ratio found abundantly 
+                        in nature, generating visually harmonious color distributions. Suitable for artistic works and 
+                        premium designs, creating color combinations that feel natural and beautiful to the human eye.
+                        Mathematically interesting, generating infinite color patterns.
                         <br />
-                        <strong>参考文献:</strong> Johannes Itten "The Art of Color" (1961) -
-                        自然界の美しい比率を色彩に応用した調和理論
+                        <strong>Reference:</strong> Johannes Itten "The Art of Color" (1961) -
+                        Harmony theory applying nature's beautiful ratio to color
                     </p>
                     <div class="grid grid-cols-10 gap-2" id="goldenratio-colors">
-                        <!-- JavaScriptで生成 -->
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- インタラクティブセクション -->
+        <!-- Interactive Section -->
         <section class="mt-12">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-                <h2 class="mb-6 text-2xl font-bold text-gray-800 dark:text-gray-200">インタラクティブ色生成</h2>
+                <h2 class="mb-6 text-2xl font-bold text-gray-800 dark:text-gray-200">Interactive Color Generation</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- アルゴリズム選択 -->
+                    <!-- Algorithm Selection -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            アルゴリズム
+                            Algorithm
                         </label>
                         <select id="algorithm-select" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                            <option value="golden-ratio">黄金比色</option>
-                            <option value="equidistant">等間隔色</option>
-                            <option value="fibonacci">フィボナッチ色</option>
-                            <option value="color-wheel">カラーホイール色</option>
+                            <option value="golden-ratio">Golden Ratio Colors</option>
+                            <option value="equidistant">Equidistant Colors</option>
+                            <option value="fibonacci">Fibonacci Colors</option>
+                            <option value="color-wheel">Color Wheel Colors</option>
                         </select>
                     </div>
                     
-                    <!-- 色の数 -->
+                    <!-- Number of Colors -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            色の数: <span id="color-count">10</span>
+                            Number of Colors: <span id="color-count">10</span>
                         </label>
                         <input type="range" id="color-slider" min="5" max="30" value="10" 
                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
                     </div>
                     
-                    <!-- 彩度 -->
+                    <!-- Saturation -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            彩度: <span id="saturation-value">0.8</span>
+                            Saturation: <span id="saturation-value">0.8</span>
                         </label>
                         <input type="range" id="saturation-slider" min="0.1" max="1" step="0.1" value="0.8" 
                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
                     </div>
                     
-                    <!-- 明度 -->
+                    <!-- Lightness -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            明度: <span id="lightness-value">0.6</span>
+                            Lightness: <span id="lightness-value">0.6</span>
                         </label>
                         <input type="range" id="lightness-slider" min="0.1" max="0.9" step="0.1" value="0.6" 
                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
                     </div>
                 </div>
                 
-                <!-- 現在の設定表示 -->
+                <!-- Current Settings Display -->
                 <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">現在の設定</h3>
+                    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Current Settings</h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                         <div>
-                            <span class="text-gray-500 dark:text-gray-400">アルゴリズム:</span>
-                            <span id="current-algorithm" class="ml-2 font-mono text-gray-700 dark:text-gray-300">黄金比色</span>
+                            <span class="text-gray-500 dark:text-gray-400">Algorithm:</span>
+                            <span id="current-algorithm" class="ml-2 font-mono text-gray-700 dark:text-gray-300">Golden Ratio Colors</span>
                         </div>
                         <div>
-                            <span class="text-gray-500 dark:text-gray-400">色の数:</span>
+                            <span class="text-gray-500 dark:text-gray-400">Colors:</span>
                             <span id="current-count" class="ml-2 font-mono text-gray-700 dark:text-gray-300">10</span>
                         </div>
                         <div>
-                            <span class="text-gray-500 dark:text-gray-400">彩度:</span>
+                            <span class="text-gray-500 dark:text-gray-400">Saturation:</span>
                             <span id="current-saturation" class="ml-2 font-mono text-gray-700 dark:text-gray-300">0.8</span>
                         </div>
                         <div>
-                            <span class="text-gray-500 dark:text-gray-400">明度:</span>
+                            <span class="text-gray-500 dark:text-gray-400">Lightness:</span>
                             <span id="current-lightness" class="ml-2 font-mono text-gray-700 dark:text-gray-300">0.6</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="mt-6">
-                    <h3 class="text-lg font-semibold mb-3">生成された色</h3>
+                    <h3 class="text-lg font-semibold mb-3">Generated Colors</h3>
                     <div class="grid gap-2" id="interactive-colors" style="grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));">
-                        <!-- JavaScriptで生成 -->
+                        <!-- Generated by JavaScript -->
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- フッター -->
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 mt-12">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 GenerateColor. 数学的理論に基づく色生成アルゴリズム。</p>
+            <p>&copy; 2024 GenerateColor. Color generation algorithms based on mathematical theories.</p>
             <p class="text-sm text-gray-400 mt-2">
-                Johannes Itten, Cynthia Brewer, Fibonacci数列などの理論を応用
+                Applying theories from Johannes Itten, Cynthia Brewer, Fibonacci sequence, and more
             </p>
         </div>
     </footer>
 
-
-
-    <!-- 色生成アルゴリズムのJavaScript実装 -->
+    <!-- Color Generation Algorithm JavaScript Implementation -->
     <script type="module">
         import {
             Color,
@@ -258,7 +259,7 @@
             ColorWheelColorGenerator
         } from './dist/colorGenerators.js';
 
-        // 色カードを生成する関数
+        // Function to create color cards
         const createColorCard = (color, index) => {
             return `
                 <div class="color-card flex h-20 flex-col items-center justify-center rounded-lg border-2 border-gray-200 dark:border-gray-600 text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg"
@@ -270,9 +271,9 @@
             `;
         };
 
-        // ページ読み込み時に色を生成
+        // Generate colors when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            // 固定の色セットを生成
+            // Generate fixed color sets
             const goldenColor = new Color(new GoldenRatioColorGenerator());
             const equidistantColor = new Color(new EquidistantColorGenerator());
             const fibonacciColor = new Color(new FibonacciColorGenerator());
@@ -283,7 +284,7 @@
             const colorWheelColors = colorWheelColor.generate(20);
             const goldenRatioColors = goldenColor.generate(20);
 
-            // 色カードを表示
+            // Display color cards
             document.getElementById('equidistant-colors').innerHTML = 
                 equidistantColors.map((color, index) => createColorCard(color, index)).join('');
             
@@ -296,17 +297,17 @@
             document.getElementById('goldenratio-colors').innerHTML = 
                 goldenRatioColors.map((color, index) => createColorCard(color, index)).join('');
 
-            // インタラクティブセクションの初期化
+            // Initialize interactive section
             updateInteractiveColors();
             updateCurrentSettings();
 
-            // アルゴリズム選択のイベントリスナー
+            // Algorithm selection event listener
             document.getElementById('algorithm-select').addEventListener('change', () => {
                 updateInteractiveColors();
                 updateCurrentSettings();
             });
 
-            // スライダーのイベントリスナー
+            // Slider event listeners
             document.getElementById('color-slider').addEventListener('input', (e) => {
                 document.getElementById('color-count').textContent = e.target.value;
                 updateInteractiveColors();
@@ -326,7 +327,7 @@
             });
         });
 
-        // 現在の設定を更新
+        // Update current settings
         function updateCurrentSettings() {
             const algorithm = document.getElementById('algorithm-select');
             const algorithmText = algorithm.options[algorithm.selectedIndex].text;
@@ -340,7 +341,7 @@
             document.getElementById('current-lightness').textContent = lightness;
         }
 
-        // インタラクティブ色を更新
+        // Update interactive colors
         function updateInteractiveColors() {
             const algorithm = document.getElementById('algorithm-select').value;
             const colorCount = parseInt(document.getElementById('color-slider').value);
@@ -374,4 +375,4 @@
         }
     </script>
 </body>
-</html>
+</html> 
