@@ -154,25 +154,74 @@
         <section class="mt-12">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
                 <h2 class="mb-6 text-2xl font-bold text-gray-800 dark:text-gray-200">インタラクティブ色生成</h2>
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- アルゴリズム選択 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            アルゴリズム
+                        </label>
+                        <select id="algorithm-select" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <option value="golden-ratio">黄金比色</option>
+                            <option value="equidistant">等間隔色</option>
+                            <option value="fibonacci">フィボナッチ色</option>
+                            <option value="color-wheel">カラーホイール色</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 色の数 -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             色の数: <span id="color-count">10</span>
                         </label>
                         <input type="range" id="color-slider" min="5" max="30" value="10" 
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
                     </div>
+                    
+                    <!-- 彩度 -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             彩度: <span id="saturation-value">0.8</span>
                         </label>
                         <input type="range" id="saturation-slider" min="0.1" max="1" step="0.1" value="0.8" 
-                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
+                    </div>
+                    
+                    <!-- 明度 -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            明度: <span id="lightness-value">0.6</span>
+                        </label>
+                        <input type="range" id="lightness-slider" min="0.1" max="0.9" step="0.1" value="0.6" 
+                               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600">
                     </div>
                 </div>
+                
+                <!-- 現在の設定表示 -->
+                <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">現在の設定</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                            <span class="text-gray-500 dark:text-gray-400">アルゴリズム:</span>
+                            <span id="current-algorithm" class="ml-2 font-mono text-gray-700 dark:text-gray-300">黄金比色</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 dark:text-gray-400">色の数:</span>
+                            <span id="current-count" class="ml-2 font-mono text-gray-700 dark:text-gray-300">10</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 dark:text-gray-400">彩度:</span>
+                            <span id="current-saturation" class="ml-2 font-mono text-gray-700 dark:text-gray-300">0.8</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 dark:text-gray-400">明度:</span>
+                            <span id="current-lightness" class="ml-2 font-mono text-gray-700 dark:text-gray-300">0.6</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="mt-6">
                     <h3 class="text-lg font-semibold mb-3">生成された色</h3>
-                    <div class="grid grid-cols-10 gap-2" id="interactive-colors">
+                    <div class="grid gap-2" id="interactive-colors" style="grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));">
                         <!-- JavaScriptで生成 -->
                     </div>
                 </div>
@@ -364,7 +413,7 @@
         // 色カードを生成する関数
         const createColorCard = (color, index) => {
             return `
-                <div class="color-card flex h-16 flex-col items-center justify-center rounded-lg border-2 border-gray-200 dark:border-gray-600 text-center cursor-pointer"
+                <div class="color-card flex h-20 flex-col items-center justify-center rounded-lg border-2 border-gray-200 dark:border-gray-600 text-center cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg"
                      style="background-color: ${color}"
                      title="${color}">
                     <span class="font-mono text-xs text-white drop-shadow-lg font-bold">${index + 1}</span>
@@ -396,25 +445,73 @@
 
             // インタラクティブセクションの初期化
             updateInteractiveColors();
+            updateCurrentSettings();
+
+            // アルゴリズム選択のイベントリスナー
+            document.getElementById('algorithm-select').addEventListener('change', () => {
+                updateInteractiveColors();
+                updateCurrentSettings();
+            });
 
             // スライダーのイベントリスナー
             document.getElementById('color-slider').addEventListener('input', (e) => {
                 document.getElementById('color-count').textContent = e.target.value;
                 updateInteractiveColors();
+                updateCurrentSettings();
             });
 
             document.getElementById('saturation-slider').addEventListener('input', (e) => {
                 document.getElementById('saturation-value').textContent = e.target.value;
                 updateInteractiveColors();
+                updateCurrentSettings();
+            });
+
+            document.getElementById('lightness-slider').addEventListener('input', (e) => {
+                document.getElementById('lightness-value').textContent = e.target.value;
+                updateInteractiveColors();
+                updateCurrentSettings();
             });
         });
 
+        // 現在の設定を更新
+        function updateCurrentSettings() {
+            const algorithm = document.getElementById('algorithm-select');
+            const algorithmText = algorithm.options[algorithm.selectedIndex].text;
+            const colorCount = document.getElementById('color-slider').value;
+            const saturation = document.getElementById('saturation-slider').value;
+            const lightness = document.getElementById('lightness-slider').value;
+
+            document.getElementById('current-algorithm').textContent = algorithmText;
+            document.getElementById('current-count').textContent = colorCount;
+            document.getElementById('current-saturation').textContent = saturation;
+            document.getElementById('current-lightness').textContent = lightness;
+        }
+
         // インタラクティブ色を更新
         function updateInteractiveColors() {
+            const algorithm = document.getElementById('algorithm-select').value;
             const colorCount = parseInt(document.getElementById('color-slider').value);
             const saturation = parseFloat(document.getElementById('saturation-slider').value);
+            const lightness = parseFloat(document.getElementById('lightness-slider').value);
             
-            const colors = generateGoldenRatioColors(colorCount, saturation, 0.6, 0);
+            let colors;
+            
+            switch(algorithm) {
+                case 'golden-ratio':
+                    colors = generateGoldenRatioColors(colorCount, saturation, lightness, 0);
+                    break;
+                case 'equidistant':
+                    colors = generateEquidistantColors(colorCount, saturation, lightness, 0);
+                    break;
+                case 'fibonacci':
+                    colors = generateFibonacciColors(colorCount, saturation, lightness, 0);
+                    break;
+                case 'color-wheel':
+                    colors = generateColorWheelColors(colorCount, saturation, lightness, 0);
+                    break;
+                default:
+                    colors = generateGoldenRatioColors(colorCount, saturation, lightness, 0);
+            }
             
             document.getElementById('interactive-colors').innerHTML = 
                 colors.map((color, index) => createColorCard(color, index)).join('');
