@@ -26,6 +26,10 @@
 
 Johannes Itten のカラーホイール理論に基づいて色を生成します。補色・三色配色など、視覚的調和を数学的に体系化した理論を実装しています。
 
+### 5. 交互色生成 (Alternating) 🆕
+
+寒色系の範囲（200°-300°）をn分割して色を生成します。偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、統一感のある色の組み合わせを生成します。
+
 ## 使用方法
 
 ### TypeScript版
@@ -39,6 +43,7 @@ import {
   EquidistantColorGenerator,
   FibonacciColorGenerator,
   ColorWheelColorGenerator,
+  AlternatingColorGenerator,
 } from 'generate-color';
 
 // 黄金比アルゴリズムを使用
@@ -50,6 +55,15 @@ console.log(colors); // ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
 const equidistantColor = new Color(new EquidistantColorGenerator());
 const colors = equidistantColor.generate(6);
 console.log(colors); // ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
+
+// 交互色生成アルゴリズムを使用
+const alternatingColor = new Color(new AlternatingColorGenerator());
+const alternatingColors = alternatingColor.generate(10);
+console.log(alternatingColors); // 寒色系範囲をn分割した柔軟な色の組み合わせ
+
+
+
+
 ```
 
 #### TypeScript パラメータの調整
@@ -131,6 +145,7 @@ class GoldenRatioColorGenerator implements ColorGenerator
 class EquidistantColorGenerator implements ColorGenerator
 class FibonacciColorGenerator implements ColorGenerator
 class ColorWheelColorGenerator implements ColorGenerator
+class AlternatingColorGenerator implements ColorGenerator
 ```
 
 ### Python API

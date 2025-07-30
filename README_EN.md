@@ -26,6 +26,10 @@ Uses the reciprocal of the Fibonacci sequence to determine hue. Similar to the g
 
 Generates colors based on Johannes Itten's color wheel theory. Implements mathematically systematized theories of visual harmony including complementary and triadic color schemes.
 
+### 5. Alternating Color Generation 🆕
+
+Generates colors by dividing the cold color range (200°-300°) into n parts. Even indices use cold colors, odd indices use their complementary colors (warm colors), creating a unified color combination.
+
 ## Usage
 
 ### TypeScript Version
@@ -39,6 +43,7 @@ import {
   EquidistantColorGenerator,
   FibonacciColorGenerator,
   ColorWheelColorGenerator,
+  AlternatingColorGenerator,
 } from 'generate-color';
 
 // Using Golden Ratio algorithm
@@ -50,6 +55,11 @@ console.log(colors); // ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']
 const equidistantColor = new Color(new EquidistantColorGenerator());
 const colors = equidistantColor.generate(6);
 console.log(colors); // ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
+
+// Using Alternating Color Generation algorithm
+const alternatingColor = new Color(new AlternatingColorGenerator());
+const alternatingColors = alternatingColor.generate(10);
+console.log(alternatingColors); // Flexible color combinations with cold color range divided into n parts
 ```
 
 #### TypeScript Parameter Adjustment
@@ -131,6 +141,7 @@ class GoldenRatioColorGenerator implements ColorGenerator
 class EquidistantColorGenerator implements ColorGenerator
 class FibonacciColorGenerator implements ColorGenerator
 class ColorWheelColorGenerator implements ColorGenerator
+class AlternatingColorGenerator implements ColorGenerator
 ```
 
 ### Python API

@@ -53,10 +53,10 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
                 <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">概要</h2>
                 <p class="text-gray-600 dark:text-gray-300 mb-4">
-                    このプロジェクトでは、4つの異なる数学的理論に基づいて色を生成するアルゴリズムを実装しています。
+                    このプロジェクトでは、5つの色を生成するアルゴリズムを実装しています。
                     それぞれのアルゴリズムは、異なる用途やデザイン要件に適した色の組み合わせを提供します。
                 </p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
                     <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                         <h3 class="font-semibold text-blue-800 dark:text-blue-200">等間隔色</h3>
                         <p class="text-sm text-blue-600 dark:text-blue-300">データ可視化に最適</p>
@@ -72,6 +72,10 @@
                     <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
                         <h3 class="font-semibold text-yellow-800 dark:text-yellow-200">黄金比色</h3>
                         <p class="text-sm text-yellow-600 dark:text-yellow-300">自然の美しさを再現</p>
+                    </div>
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-800 dark:text-cyan-200">交互色生成</h3>
+                        <p class="text-sm text-cyan-600 dark:text-cyan-300">寒色系と暖色系の交互生成</p>
                     </div>
                 </div>
             </div>
@@ -149,6 +153,22 @@
                         <!-- JavaScriptで生成 -->
                     </div>
                 </div>
+
+                <!-- 交互色生成 20色 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                    <h3 class="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-200">交互色生成 20色</h3>
+                    <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
+                        generateAlternatingColors(20) - 寒色系と暖色系の対比による色の組み合わせ
+                    </p>
+                    <p class="mb-4 text-xs text-gray-500 dark:text-gray-400">
+                        寒色系の範囲（200°-300°）をn分割して色を生成。偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
+                        視覚的な対比を強調します。データ可視化やUIデザインに適した色選択。
+                        統一感のある色の組み合わせで、キャンドルチャートや対比が必要なデータ表示に最適。
+                    </p>
+                    <div class="grid grid-cols-10 gap-2" id="alternating-colors">
+                        <!-- JavaScriptで生成 -->
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -167,6 +187,7 @@
                             <option value="equidistant">等間隔色</option>
                             <option value="fibonacci">フィボナッチ色</option>
                             <option value="color-wheel">カラーホイール色</option>
+                            <option value="alternating">交互色生成</option>
                         </select>
                     </div>
                     
@@ -250,7 +271,8 @@
             GoldenRatioColorGenerator,
             EquidistantColorGenerator,
             FibonacciColorGenerator,
-            ColorWheelColorGenerator
+            ColorWheelColorGenerator,
+            AlternatingColorGenerator
         } from './dist/colorGenerators.js';
 
         // 色カードを生成する関数
@@ -272,11 +294,13 @@
             const equidistantColor = new Color(new EquidistantColorGenerator());
             const fibonacciColor = new Color(new FibonacciColorGenerator());
             const colorWheelColor = new Color(new ColorWheelColorGenerator());
+            const alternatingColor = new Color(new AlternatingColorGenerator());
 
             const equidistantColors = equidistantColor.generate(20);
             const fibonacciColors = fibonacciColor.generate(20);
             const colorWheelColors = colorWheelColor.generate(20);
             const goldenRatioColors = goldenColor.generate(20);
+            const alternatingColors = alternatingColor.generate(20);
 
             // 色カードを表示
             document.getElementById('equidistant-colors').innerHTML = 
@@ -290,6 +314,9 @@
             
             document.getElementById('goldenratio-colors').innerHTML = 
                 goldenRatioColors.map((color, index) => createColorCard(color, index)).join('');
+            
+            document.getElementById('alternating-colors').innerHTML = 
+                alternatingColors.map((color, index) => createColorCard(color, index)).join('');
 
             // インタラクティブセクションの初期化
             updateInteractiveColors();
@@ -357,13 +384,14 @@
                 case 'color-wheel':
                     colorGenerator = new ColorWheelColorGenerator();
                     break;
+                case 'alternating':
+                    colorGenerator = new AlternatingColorGenerator();
+                    break;
                 default:
                     colorGenerator = new GoldenRatioColorGenerator();
             }
-            
             const color = new Color(colorGenerator);
             const colors = color.generate(colorCount, saturation, lightness, 0);
-            
             document.getElementById('interactive-colors').innerHTML = 
                 colors.map((color, index) => createColorCard(color, index)).join('');
         }
