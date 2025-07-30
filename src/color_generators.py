@@ -468,6 +468,92 @@ class ColorWheelColorGenerator(ColorGenerator):
         return colors
 
 
+class AlternatingColorGenerator(ColorGenerator):
+    """
+    交互色生成アルゴリズム
+
+    寒色系の範囲（base_hueからend_hue）をn分割して色を生成します。
+    偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
+    統一感のある色の組み合わせを生成します。
+
+    Attributes:
+        base_hue (float): 基本色相（寒色系の開始）
+        end_hue (float): 終了色相（寒色系の終了）
+
+    Methods:
+        generate_colors: 交互色生成アルゴリズム
+
+    Example:
+        >>> generator = AlternatingColorGenerator()
+        >>> colors = generator.generate_colors(10)
+        >>> print(colors)
+        ['#00b3b3', '#ff4d00', '#00ccb3', '#ff3300', '#00e6b3', '#ff1a00', '#00ffb3', '#ff0000', '#1affb3', '#e60000']
+    """
+
+    def __init__(self):
+        """基本色相と終了色相を初期化"""
+        self.base_hue = 200  # 基本色相（寒色系の開始）
+        self.end_hue = 300  # 終了色相（寒色系の終了）
+
+    def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
+        """
+        交互色生成アルゴリズム
+
+        寒色系の範囲（base_hueからend_hue）をn分割して色を生成します。
+        偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
+        統一感のある色の組み合わせを生成します。
+
+        Args:
+            n: 生成する色の数（1以上の整数）
+            saturation: 彩度（0.0-1.0の範囲、デフォルト: 0.8）
+            lightness: 明度（0.0-1.0の範囲、デフォルト: 0.6）
+            offset: 色相の開始オフセット（0-360度、デフォルト: 0）
+
+        Returns:
+            hex形式の色文字列のリスト
+
+        Raises:
+            ValueError: 色の数が0以下の場合
+
+        Example:
+            >>> generator = AlternatingColorGenerator()
+            >>> colors = generator.generate_colors(10, saturation=0.9)
+            >>> print(colors)
+            ['#00b3b3', '#ff4d00', '#00ccb3', '#ff3300', '#00e6b3', '#ff1a00', '#00ffb3', '#ff0000', '#1affb3', '#e60000']
+        """
+        if n <= 0:
+            raise ValueError("色の数は1以上である必要があります")
+
+        colors = []
+
+        for i in range(n):
+            is_even = i % 2 == 0
+
+            if is_even:
+                # 偶数番目：寒色系の範囲をn/2分割
+                cold_index = i // 2
+                hue_step = (self.end_hue - self.base_hue) / max(1, (n // 2) - 1)
+                hue = self.base_hue + (cold_index * hue_step) + offset
+            else:
+                # 奇数番目：寒色系の補色（暖色系）
+                cold_index = (i - 1) // 2
+                hue_step = (self.end_hue - self.base_hue) / max(1, (n // 2) - 1)
+                cold_hue = self.base_hue + (cold_index * hue_step)
+                hue = (cold_hue + 180 + offset) % 360
+
+            # 色の数が多い場合は彩度と明度を少しずつ変化させる
+            saturation_variation = min(0.1, n / 100)  # 最大0.1の変化
+            lightness_variation = min(0.1, n / 100)  # 最大0.1の変化
+
+            adjusted_saturation = max(0.3, min(1.0, saturation + (i * 0.02 - 0.01 * n) * saturation_variation))
+            adjusted_lightness = max(0.3, min(0.8, lightness + (i * 0.015 - 0.0075 * n) * lightness_variation))
+
+            r, g, b = hsl_to_rgb(hue, adjusted_saturation, adjusted_lightness)
+            colors.append(rgb_to_hex(r, g, b))
+
+        return colors
+
+
 # 使用例
 if __name__ == "__main__":
     # シンプルな使用例
@@ -479,6 +565,7 @@ if __name__ == "__main__":
         "等間隔": EquidistantColorGenerator(),
         "フィボナッチ": FibonacciColorGenerator(),
         "カラーホイール": ColorWheelColorGenerator(),
+        "交互色生成": AlternatingColorGenerator(),
     }
 
     for name, generator in generators.items():
@@ -492,13 +579,16 @@ if __name__ == "__main__":
     equidistant_color = Color(EquidistantColorGenerator())
     fibonacci_color = Color(FibonacciColorGenerator())
     color_wheel_color = Color(ColorWheelColorGenerator())
+    alternating_color = Color(AlternatingColorGenerator())
 
     # 同じインターフェースで異なるアルゴリズムを使用
     print(f"黄金比色: {golden_color.generate(5)}")
     print(f"等間隔色: {equidistant_color.generate(5)}")
     print(f"フィボナッチ色: {fibonacci_color.generate(5)}")
     print(f"カラーホイール色: {color_wheel_color.generate(5)}")
+    print(f"交互色生成: {alternating_color.generate(5)}")
 
     # パラメータを変更して使用
     print(f"\n高彩度黄金比色: {golden_color.generate(3, saturation=0.9, lightness=0.5)}")
     print(f"オフセット等間隔色: {equidistant_color.generate(3, offset=90)}")
+    print(f"交互色生成（10色）: {alternating_color.generate(10)}")
