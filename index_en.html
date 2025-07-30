@@ -392,10 +392,8 @@
                 default:
                     colorGenerator = new GoldenRatioColorGenerator();
             }
-            
             const color = new Color(colorGenerator);
             const colors = color.generate(colorCount, saturation, lightness, 0);
-            
             document.getElementById('interactive-colors').innerHTML = 
                 colors.map((color, index) => createColorCard(color, index)).join('');
         }

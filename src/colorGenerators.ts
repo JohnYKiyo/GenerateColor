@@ -315,8 +315,8 @@ export class ColorWheelColorGenerator implements ColorGenerator {
  * - 色覚異常者にも配慮した色選択
  */
 export class AlternatingColorGenerator implements ColorGenerator {
-  private baseHue: number = 200;   // 基本色相（寒色系の開始）
-  private endHue: number = 300;    // 終了色相（寒色系の終了）
+  private baseHue: number = 200; // 基本色相（寒色系の開始）
+  private endHue: number = 300; // 終了色相（寒色系の終了）
 
   /**
    * 交互色生成アルゴリズム
@@ -340,30 +340,28 @@ export class AlternatingColorGenerator implements ColorGenerator {
 
     for (let i = 0; i < n; i++) {
       const isEven = i % 2 === 0;
-      
+
       let hue: number;
       if (isEven) {
         // 偶数番目：寒色系の範囲をn/2分割
         const coldIndex = Math.floor(i / 2);
         const hueStep = (this.endHue - this.baseHue) / Math.max(1, Math.floor(n / 2) - 1);
-        hue = this.baseHue + (coldIndex * hueStep) + offset;
+        hue = this.baseHue + coldIndex * hueStep + offset;
       } else {
         // 奇数番目：寒色系の補色（暖色系）
         const coldIndex = Math.floor((i - 1) / 2);
         const hueStep = (this.endHue - this.baseHue) / Math.max(1, Math.floor(n / 2) - 1);
-        const coldHue = this.baseHue + (coldIndex * hueStep);
+        const coldHue = this.baseHue + coldIndex * hueStep;
         hue = (coldHue + 180 + offset) % 360;
       }
-      
+
       // 色の数が多い場合は彩度と明度を少しずつ変化させる
       const saturationVariation = Math.min(0.1, n / 100); // 最大0.1の変化
-      const lightnessVariation = Math.min(0.1, n / 100);  // 最大0.1の変化
-      
-      const adjustedSaturation = Math.max(0.3, Math.min(1.0, 
-        saturation + (i * 0.02 - 0.01 * n) * saturationVariation));
-      const adjustedLightness = Math.max(0.3, Math.min(0.8, 
-        lightness + (i * 0.015 - 0.0075 * n) * lightnessVariation));
-      
+      const lightnessVariation = Math.min(0.1, n / 100); // 最大0.1の変化
+
+      const adjustedSaturation = Math.max(0.3, Math.min(1.0, saturation + (i * 0.02 - 0.01 * n) * saturationVariation));
+      const adjustedLightness = Math.max(0.3, Math.min(0.8, lightness + (i * 0.015 - 0.0075 * n) * lightnessVariation));
+
       const [r, g, b] = hslToRgb(hue, adjustedSaturation, adjustedLightness);
       colors.push(rgbToHex(r, g, b));
     }
