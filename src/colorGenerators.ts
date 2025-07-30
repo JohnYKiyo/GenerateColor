@@ -315,15 +315,16 @@ export class ColorWheelColorGenerator implements ColorGenerator {
  * - 色覚異常者にも配慮した色選択
  */
 export class AlternatingColorGenerator implements ColorGenerator {
-  private baseHue: number = 200; // 基本色相（寒色系の開始）
-  private endHue: number = 300; // 終了色相（寒色系の終了）
+  private baseHue: number = 90; // 基本色相（寒色系の開始）
+  private endHue: number = 240; // 終了色相（寒色系の終了）
+  private goldenRatio: number = 0.618033988749895; // 黄金比
 
   /**
-   * 交互色生成アルゴリズム
+   * 交互色生成アルゴリズム（黄金比ベース）
    *
-   * 寒色系の範囲（baseHueからendHue）をn分割して色を生成します。
+   * 寒色系の範囲（baseHueからendHue）を黄金比を使って色を生成します。
    * 偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
-   * 統一感のある色の組み合わせを生成します。
+   * 黄金比による自然な色の分布で統一感のある色の組み合わせを生成します。
    *
    * @param n 生成する色の数（1以上の整数）
    * @param saturation 彩度（0.0-1.0の範囲、デフォルト: 0.8）
@@ -337,21 +338,22 @@ export class AlternatingColorGenerator implements ColorGenerator {
     }
 
     const colors: string[] = [];
+    const hueRange = this.endHue - this.baseHue;
 
     for (let i = 0; i < n; i++) {
       const isEven = i % 2 === 0;
 
       let hue: number;
       if (isEven) {
-        // 偶数番目：寒色系の範囲をn/2分割
+        // 偶数番目：寒色系の範囲を黄金比で分割
         const coldIndex = Math.floor(i / 2);
-        const hueStep = (this.endHue - this.baseHue) / Math.max(1, Math.floor(n / 2) - 1);
-        hue = this.baseHue + coldIndex * hueStep + offset;
+        const goldenAngle = (coldIndex * this.goldenRatio) % 1;
+        hue = this.baseHue + goldenAngle * hueRange + offset;
       } else {
         // 奇数番目：寒色系の補色（暖色系）
         const coldIndex = Math.floor((i - 1) / 2);
-        const hueStep = (this.endHue - this.baseHue) / Math.max(1, Math.floor(n / 2) - 1);
-        const coldHue = this.baseHue + coldIndex * hueStep;
+        const goldenAngle = (coldIndex * this.goldenRatio) % 1;
+        const coldHue = this.baseHue + goldenAngle * hueRange;
         hue = (coldHue + 180 + offset) % 360;
       }
 

@@ -470,18 +470,19 @@ class ColorWheelColorGenerator(ColorGenerator):
 
 class AlternatingColorGenerator(ColorGenerator):
     """
-    交互色生成アルゴリズム
+    交互色生成アルゴリズム（黄金比ベース）
 
-    寒色系の範囲（base_hueからend_hue）をn分割して色を生成します。
+    寒色系の範囲（base_hueからend_hue）を黄金比を使って色を生成します。
     偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
-    統一感のある色の組み合わせを生成します。
+    黄金比による自然な色の分布で統一感のある色の組み合わせを生成します。
 
     Attributes:
         base_hue (float): 基本色相（寒色系の開始）
         end_hue (float): 終了色相（寒色系の終了）
+        golden_ratio (float): 黄金比
 
     Methods:
-        generate_colors: 交互色生成アルゴリズム
+        generate_colors: 交互色生成アルゴリズム（黄金比ベース）
 
     Example:
         >>> generator = AlternatingColorGenerator()
@@ -492,16 +493,17 @@ class AlternatingColorGenerator(ColorGenerator):
 
     def __init__(self):
         """基本色相と終了色相を初期化"""
-        self.base_hue = 200  # 基本色相（寒色系の開始）
-        self.end_hue = 300  # 終了色相（寒色系の終了）
+        self.base_hue = 90  # 基本色相（寒色系の開始）
+        self.end_hue = 240  # 終了色相（寒色系の終了）
+        self.golden_ratio = 0.618033988749895  # 黄金比
 
     def generate_colors(self, n: int, saturation: float = 0.8, lightness: float = 0.6, offset: float = 0) -> List[str]:
         """
-        交互色生成アルゴリズム
+        交互色生成アルゴリズム（黄金比ベース）
 
-        寒色系の範囲（base_hueからend_hue）をn分割して色を生成します。
+        寒色系の範囲（base_hueからend_hue）を黄金比を使って色を生成します。
         偶数番目は寒色系、奇数番目はその補色（暖色系）を使用し、
-        統一感のある色の組み合わせを生成します。
+        黄金比による自然な色の分布で統一感のある色の組み合わせを生成します。
 
         Args:
             n: 生成する色の数（1以上の整数）
@@ -525,20 +527,21 @@ class AlternatingColorGenerator(ColorGenerator):
             raise ValueError("色の数は1以上である必要があります")
 
         colors = []
+        hue_range = self.end_hue - self.base_hue
 
         for i in range(n):
             is_even = i % 2 == 0
 
             if is_even:
-                # 偶数番目：寒色系の範囲をn/2分割
+                # 偶数番目：寒色系の範囲を黄金比で分割
                 cold_index = i // 2
-                hue_step = (self.end_hue - self.base_hue) / max(1, (n // 2) - 1)
-                hue = self.base_hue + (cold_index * hue_step) + offset
+                golden_angle = (cold_index * self.golden_ratio) % 1
+                hue = self.base_hue + (golden_angle * hue_range) + offset
             else:
                 # 奇数番目：寒色系の補色（暖色系）
                 cold_index = (i - 1) // 2
-                hue_step = (self.end_hue - self.base_hue) / max(1, (n // 2) - 1)
-                cold_hue = self.base_hue + (cold_index * hue_step)
+                golden_angle = (cold_index * self.golden_ratio) % 1
+                cold_hue = self.base_hue + (golden_angle * hue_range)
                 hue = (cold_hue + 180 + offset) % 360
 
             # 色の数が多い場合は彩度と明度を少しずつ変化させる
